@@ -14,3 +14,6 @@ docker run -v $RESULTS_LOCATION:/results  --env-file ~/.github.env grdb
 echo "Analysis run on:" > $LOG_FILE
 date >> $LOG_FILE
 
+## once ready prepare to download data
+gp url 8080 # where should the data be exposed
+python3 -m http.server 8080
