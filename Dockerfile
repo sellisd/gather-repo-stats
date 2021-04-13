@@ -36,6 +36,3 @@ CMD gitrepodb init --overwrite \
     && ./gradlew run --args='--input /data --output /results/java.tsv' \
     && pycodeseq --input_path /data --output /results/python.tsv --method levels \
     && pycodeseq --input_path /data --output /results/jupyter.tsv --method cells
-
-# docker build -t grdb .
-# docker run -v ~/dockerresults:/results  --env-file ~/.github.env grdb
