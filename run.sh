@@ -10,7 +10,7 @@ LOG_FILE=gather-repo-stats.log
 RESULTS_LOCATION=/workspace/dockerresults/ # to persist in a gitpod
 
 ## Build image
-docker build -t grdb .
+docker build -t results gather-repo-stats .
 
 ## Run analysis and copy results locally
 docker run -v $RESULTS_LOCATION:/results gather-repo-stats
