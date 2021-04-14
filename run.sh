@@ -4,16 +4,18 @@
 
 ## Pre-requisites
 # make sure docker is running `sudo docker-up` and in a new terminal run run.sh
+# save in github PAT in /workspace/.github.env file
 
 ## Set-up environment
 LOG_FILE=gather-repo-stats.log
-RESULTS_LOCATION=/workspace/dockerresults/ # to persist in a gitpod
+RESULTS_LOCATION=/workspace # to persist in a gitpod
+RESULTS_LOCATION=$HOME
 
 ## Build image
-docker build -t results gather-repo-stats .
+docker build -t gather-repo-stats .
 
 ## Run analysis and copy results locally
-docker run -v $RESULTS_LOCATION:/results gather-repo-stats
+docker run -v ${RESULTS_LOCATION}/dockerresults/:/results --env-file ${RESULTS_LOCATION}/.github.env gather-repo-stats
 
 ## Save log with time stamp
 echo "Analysis run on:" > $LOG_FILE
