@@ -8,8 +8,8 @@
 
 ## Set-up environment
 LOG_FILE=gather-repo-stats.log
-RESULTS_LOCATION=/workspace # to persist in a gitpod
-RESULTS_LOCATION=$HOME
+RESULTS_LOCATION=/workspace/gather-repo-stats # to persist in a gitpod
+#RESULTS_LOCATION=$HOME
 
 ## Save log with time stamp
 echo "Analysis started at:" > $LOG_FILE
