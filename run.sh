@@ -11,14 +11,17 @@ LOG_FILE=gather-repo-stats.log
 RESULTS_LOCATION=/workspace # to persist in a gitpod
 RESULTS_LOCATION=$HOME
 
+## Save log with time stamp
+echo "Analysis started at:" > $LOG_FILE
+date >> $LOG_FILE
+
 ## Build image
 docker build -t gather-repo-stats .
 
 ## Run analysis and copy results locally
 docker run -v ${RESULTS_LOCATION}/dockerresults/:/results --env-file ${RESULTS_LOCATION}/.github.env gather-repo-stats
 
-## Save log with time stamp
-echo "Analysis run on:" > $LOG_FILE
+echo "Analysis ended at:" >> $LOG_FILE
 date >> $LOG_FILE
 
 ## once ready prepare to download data
