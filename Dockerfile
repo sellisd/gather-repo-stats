@@ -20,9 +20,10 @@ RUN git clone https://github.com/sellisd/javacodeseq.git
 RUN python -m pip install clone git+https://github.com/sellisd/pycodeseq.git@main
 WORKDIR /src/gitrepodb
 RUN pip install -e .
+WORKDIR /data/results
 
 # Get repositories and Run analysis
-CMD gitrepodb init --overwrite \
+CMD gitrepodb init --name ./repositories.db --overwrite \
     && gitrepodb query --project python --head 100 \
     && gitrepodb add --basepath /data \
     && gitrepodb query --project java --head 100 \

@@ -4,7 +4,7 @@
 
 ## Pre-requisites
 # make sure docker is running `sudo docker-up` and in a new terminal run run.sh
-# save in github PAT in /workspace/gather-repo-stats/.github.env file
+# save github PAT in file `cat > /workspace/gather-repo-stats/.github.env`
 
 ## Set-up environment
 LOG_FILE=gather-repo-stats.log
