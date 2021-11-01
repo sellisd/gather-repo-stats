@@ -7,7 +7,7 @@
 # save github PAT in file `cat > /workspace/gather-repo-stats/.github.env`
 
 ## Set-up environment
-LOG_FILE=gather-repo-stats.log
+LOG_FILE=/workspace/gather-repo-stats.log
 RESULTS_LOCATION=/workspace/gather-repo-stats # to persist in a gitpod
 #RESULTS_LOCATION=$HOME
 
@@ -20,8 +20,9 @@ docker build -t gather-repo-stats .
 
 ## Run analysis and copy results locally
 docker run -v ${RESULTS_LOCATION}/dockerresults/:/results --env-file ${RESULTS_LOCATION}/.github.env gather-repo-stats
-
+docker wait gather-repo-stats
 echo "Analysis ended at:" >> $LOG_FILE
+
 date >> $LOG_FILE
 
 ## once ready prepare to download data

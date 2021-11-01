@@ -33,6 +33,7 @@ CMD gitrepodb init --name ./repositories.db --overwrite \
     && gitrepodb download --project python \
     && gitrepodb download --project java \
     && gitrepodb download --project jupyter \
+    && cp repositories.db /results/ \
     && cd /src/javacodeseq \
     && ./gradlew run --args='--input /data --output /results/java.tsv' \
     && pycodeseq --input_path /data --output /results/python.tsv --method levels \
