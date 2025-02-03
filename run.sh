@@ -19,7 +19,7 @@ date >> $LOG_FILE
 docker build -t gather-repo-stats .
 
 ## Run analysis and copy results locally
-docker run -v ${RESULTS_LOCATION}/dockerresults/:/results --env-file ${RESULTS_LOCATION}/.github.env gather-repo-stats
+docker run -v ~/.ssh:/root/.ssh:ro -v ${RESULTS_LOCATION}/dockerresults/:/results --env-file ${RESULTS_LOCATION}/.github.env gather-repo-stats
 docker wait gather-repo-stats
 echo "Analysis ended at:" >> $LOG_FILE
 
