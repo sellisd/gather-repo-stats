@@ -3,10 +3,11 @@ FROM python:3.13-slim
 # get required packages and tools
 RUN apt-get update \
     && apt-get install -y git wget
-ENV JAVA_HOME=/opt/jdk-11.0.10+9
+ENV JAVA_HOME=/opt/jdk-21.0.6+7
 ENV PATH=$JAVA_HOME/bin:$PATH
-RUN wget https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz
-RUN tar -xzvf OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz -C /opt/
+RUN wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz \
+    && tar -xzvf OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz -C /opt/ \
+    && rm OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz
 
 # make dir structure
 RUN mkdir -p /src
