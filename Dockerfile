@@ -1,5 +1,5 @@
 FROM python:3.13-slim
-
+ENV LC_ALL C.UTF-8
 # get required packages and tools
 RUN apt-get update \
     && apt-get install -y git wget
@@ -26,16 +26,16 @@ WORKDIR /data/results
 # Get repositories and Run analysis
 CMD gitrepodb init --name ./repositories.db --overwrite \
     && gitrepodb query --project python --head 10 \
-    && gitrepodb add --basepath /data \
+    && gitrepodb add --basepath /data/python \
     && gitrepodb query --project java --head 10 \
-    && gitrepodb add --basepath /data \
+    && gitrepodb add --basepath /data/java/ \
     && gitrepodb query --project jupyter --head 10 \
-    && gitrepodb add --basepath /data \
+    && gitrepodb add --basepath /data/jupyter \
     && gitrepodb download --project python \
     && gitrepodb download --project java \
     && gitrepodb download --project jupyter \
     && cp repositories.db /results/ \
     && cd /src/javacodeseq \
-    && ./gradlew run --args='--input /data --output /results/java.tsv' \
-    && pycodeseq --input_path /data --output /results/python.tsv --method levels \
-    && pycodeseq --input_path /data --output /results/jupyter.tsv --method cells
+    && ./gradlew run --args='--input /data/java --output /results/java.tsv' \
+    && pycodeseq --input_path /data/python --output /results/python.tsv --method levels \
+    && pycodeseq --input_path /data/jupyter --output /results/jupyter.tsv --method cells
