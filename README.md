@@ -6,6 +6,7 @@ Workflow to gather descriptive statistics from github repositories
 
 ## Usage
 
-- Create a file called .github.env and paste inside your github token
-- Run the script ./run.sh
-- The results will be exposed 
+```shell
+docker build -t gather .
+docker run -v ~/.ssh:/root/.ssh:ro -v ${PWD}/dockerresults/:/results -v ${PWD}//data:/data gather
+```
