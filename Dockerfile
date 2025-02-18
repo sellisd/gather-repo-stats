@@ -22,20 +22,8 @@ RUN git clone --depth 1 https://github.com/sellisd/gitrepodb.git \
 WORKDIR /src/gitrepodb
 RUN pip install .
 WORKDIR /data/results
+COPY run.sh /usr/local/bin/run.sh
 
 # Get repositories and Run analysis
-CMD gitrepodb init --name ./repositories.db --overwrite \
-    && gitrepodb query --project python --head 100 \
-    && gitrepodb add --basepath /data/python \
-    && gitrepodb query --project java --head 100 \
-    && gitrepodb add --basepath /data/java/ \
-    && gitrepodb query --project jupyter --head 100 \
-    && gitrepodb add --basepath /data/jupyter \
-    && gitrepodb download --project python \
-    && gitrepodb download --project java \
-    && gitrepodb download --project jupyter \
-    && cp repositories.db /results/ \
-    && cd /src/javacodeseq \
-    && ./gradlew run --args='--input /data/java --output /results/java.tsv' \
-    && pycodeseq --input_path /data/python --output /results/python.tsv --method levels \
-    && pycodeseq --input_path /data/jupyter --output /results/jupyter.tsv --method cells
+ENTRYPOINT [ "/usr/local/bin/run.sh"]
+CMD ["all"]
