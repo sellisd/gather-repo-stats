@@ -25,11 +25,11 @@ WORKDIR /data/results
 
 # Get repositories and Run analysis
 CMD gitrepodb init --name ./repositories.db --overwrite \
-    && gitrepodb query --project python --head 10 \
+    && gitrepodb query --project python --head 100 \
     && gitrepodb add --basepath /data/python \
-    && gitrepodb query --project java --head 10 \
+    && gitrepodb query --project java --head 100 \
     && gitrepodb add --basepath /data/java/ \
-    && gitrepodb query --project jupyter --head 10 \
+    && gitrepodb query --project jupyter --head 100 \
     && gitrepodb add --basepath /data/jupyter \
     && gitrepodb download --project python \
     && gitrepodb download --project java \
